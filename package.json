@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reactdom": "^2.0.0"
+  },
+  "name": "food_ordering_app",
+  "version": "1.0.0",
+  "description": "food ordering app",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p3g-18/Food_ordering_app.git"
+  },
+  "keywords": [
+    "food"
+  ],
+  "author": "pg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/p3g-18/Food_ordering_app/issues"
+  },
+  "homepage": "https://github.com/p3g-18/Food_ordering_app#readme"
+}
