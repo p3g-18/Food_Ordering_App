@@ -101,3 +101,13 @@
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
   background-color: #f0f0f0;
 }
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.search {
+  margin: 0 10px;
+}
