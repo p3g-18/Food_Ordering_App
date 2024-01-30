@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 
 import { useEffect, useState } from "react";
 import Shimmer from "./shimmer";
+import { Link } from "react-router-dom";
 // import Shimmer from "./shimmer";
 
 const Body = () => {
@@ -48,6 +49,7 @@ const Body = () => {
             }}
           />
           <button
+            className="search"
             onClick={() => {
               console.log(searchText);
 
@@ -79,9 +81,15 @@ const Body = () => {
 
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => {
-          // mapping over restaurants array list
+          // mapping over restaurants array list && changing routes dynamically
           return (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+            <Link
+              className="Restaurant-link"
+              key={restaurant.info.id}
+              to={"/restaurants/" + restaurant.info.id}
+            >
+              <RestaurantCard resData={restaurant} />
+            </Link>
           );
         })}
       </div>

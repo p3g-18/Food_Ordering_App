@@ -34,6 +34,14 @@
   border-radius: 50px;
   color: white;
 }
+.Header-link {
+  text-decoration: none;
+  color: inherit;
+}
+.Restaurant-link {
+  text-decoration: none;
+  color: inherit;
+}
 
 .res-container {
   display: flex;
@@ -109,5 +117,55 @@
   justify-content: center;
 }
 .search {
-  margin: 0 10px;
+  cursor: pointer;
+  margin: 0 100px 0 0;
 }
+
+.login {
+  padding: 5px;
+  margin: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.itemCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin: 20px 0px;
+}
+.cardList {
+  border: 1px solid black;
+  height: 130px;
+  width: 500px;
+  margin: 0 16px;
+  padding: 5px;
+  text-align: left;
+}
+.menuList {
+  border: 1px solid black;
+  text-decoration: none;
+}
+.title {
+  padding: 10px;
+  color: rgba(66, 63, 63, 0.825);
+}
+.menuList > ul {
+  list-style: none;
+}
+/* .Form {
+  display: flex;
+  border: 1px solid black;
+  height: 400px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  margin: 50px; 
+}
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
