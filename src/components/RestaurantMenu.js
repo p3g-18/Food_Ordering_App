@@ -1,73 +1,70 @@
-import { useEffect, useState } from "react";
-import Shimmer from "./shimmer";
+import Shimmer from "./Shimmer";
+import Skeleton from "./ShimmerMenu";
 import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utils/constants";
+
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { resId } = useParams();
+  const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(true);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-  const fetchMenu = async () => {
-    try {
-      const data = await fetch(MENU_URL + resId);
-      const json = await data.json();
-      console.log(json);
-      setResInfo(json.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching menu data:", error);
-      setError("Error fetching menu data");
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return <Shimmer />;
+  if (resInfo === null) {
+    return <Skeleton />;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   console.log("resInfo:", resInfo);
+  // const { name, costForTwoMessage, avgRating, cuisines } =
+  //   resInfo?.cards[0]?.card?.card?.info;
   const { name, costForTwoMessage, avgRating, cuisines } =
-    resInfo?.cards[0]?.card?.card?.info;
+    resInfo?.cards[2]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-  console.log(itemCards);
-
-  const { category, title } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+  const categories =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  console.log(
+    "resinfo",
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  );
+  console.log("categories: ", categories);
+  if (!categories || categories.length === 0) {
+    return <p>No categories found.</p>;
+  }
 
   //Shimmer
   return (
-    <div className="itemCards">
-      <div className="cardList">
-        <h1>{name}</h1>
-        <p>{costForTwoMessage}</p>
-        <p>{avgRating}</p>
-        <p>{cuisines.join(",")}</p>
+    <div className="itemCards text-center">
+      <div className="border border-solid m-12 p-4 rounded-2xl shadow-2xl">
+        <div className="cardList">
+          <h1 className="font-bold my-6 text-3xl ">{name}</h1>
+          <p className=" text-gray-400">{costForTwoMessage}</p>
+          <p className=" text-gray-400">{avgRating}</p>
+          <p className=" text-gray-400">{cuisines.join(",")}</p>
+        </div>
       </div>
 
-      <div className="menuList">
-        <h2 className="title">{title}</h2>
-        <ul>
-          {itemCards.map((item) => {
-            return (
-              <li key={item.card.info.id}>
-                {item.card.info.name} -{" "}
-                {item.card.info.price / 100 ||
-                  item.card.info.defaultPrice / 100}{" "}
-                Rs.
-              </li>
-            );
-          })}
-        </ul>
+      <div className="text-center align-middle ">
+        {categories.map((category, index) => {
+          console.log("DATATATATAT", category?.card);
+          return (
+            <RestaurantCategory
+              key={category?.card?.card?.title}
+              data={category?.card}
+              showItems={index === showIndex ? true : false}
+              // setShowIndex={() => setShowIndex(index)}
+              setShowIndex={() =>
+                setShowIndex((prevIndex) =>
+                  prevIndex === index ? false : index
+                )
+              }
+            />
+          );
+        })}
       </div>
     </div>
   );
