@@ -21,7 +21,7 @@ const Cart = () => {
         <ItemList items={cartItems} />
 
         {cartItems.length === 0 && (
-          <img src="https://assets.materialup.com/uploads/38936b35-9823-47e1-98cc-fb8b5c1d962e/preview.jpg"></img>
+          <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png"></img>
         )}
 
         <button

@@ -1,19 +1,7 @@
 const Contact = () => {
   return (
-    <div className="contact">
-      <h1>Contact Us</h1>
-      <div className="Form">
-        <form>
-          <div className="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" value="name"></input>
-            <label for="Email">Email</label>
-            <input type="Email" name="Email" value="Email" required></input>
-            <label for="message">Message</label>
-            <textarea name="message" rows="10" cols="30"></textarea>
-          </div>
-        </form>
-      </div>
+    <div className=" border border-solid border-black h-6/12 w-6/12 flex items-center justify-center ">
+      <h1 className=" font-bold text-3xl p-4 m-4 ">Contact Us</h1>
     </div>
   );
 };

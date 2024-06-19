@@ -9,6 +9,7 @@ import Error from "./components/error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import appStore from "./redux/appStore";
 import { Provider } from "react-redux";
+
 import Cart from "./components/Cart";
 
 const AppLayout = () => {
